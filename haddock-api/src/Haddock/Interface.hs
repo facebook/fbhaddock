@@ -110,7 +110,7 @@ createIfaces0 verbosity modules flags instIfaceMap =
   -- resulting ModSummaries.
   (if useTempDir then withTempOutputDir else id) $ do
     modGraph <- depAnalysis
-    if needsTemplateHaskell modGraph then do
+    if needsTemplateHaskellOrQQ modGraph then do
       modGraph' <- enableCompilation modGraph
       createIfaces verbosity flags instIfaceMap modGraph'
     else
@@ -144,7 +144,7 @@ createIfaces0 verbosity modules flags instIfaceMap =
       modifySessionDynFlags enableComp
       -- We need to update the DynFlags of the ModSummaries as well.
       let upd m = m { ms_hspp_opts = enableComp (ms_hspp_opts m) }
-      let modGraph' = map upd modGraph
+      let modGraph' = mapMG upd modGraph
       return modGraph'
 
 
