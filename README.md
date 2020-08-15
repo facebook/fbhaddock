@@ -5,7 +5,7 @@
 
 See [Description on Hackage](https://hackage.haskell.org/package/haddock).
 
-## Source code documentation
+## Documentation of Source code 
 
 Full documentation can be found in the `doc/` subdirectory, in
 [reStructedText format](http://www.sphinx-doc.org/en/stable/rest.html)
